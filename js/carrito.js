@@ -166,8 +166,6 @@ function eliminarProducto(title) {
 }
 
 
-
-
   document.getElementById("myButton").addEventListener("click", function() {
 	generarNumeroSeguimiento()
 	  .then((numeroSeguimiento) => {
