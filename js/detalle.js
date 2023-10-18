@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("descriptionValue").textContent = data[0].description;
     document.getElementById("priceValue").textContent = data[0].price;
     document.getElementById("thumbnailValue").src = data[0].thumbnail;
+    document.getElementById("cantidadValue").textContent = data[0].cantidad;
     
    
     
@@ -33,6 +34,7 @@ addToCartButton.addEventListener("click", () => {
     description: data[0].description,
     price: data[0].price,
     thumbnail: data[0].thumbnail,
+    cantidad:data[0].cantidad
   
   };
 
@@ -66,30 +68,9 @@ console.log("El producto ha sido agregado al carrito.");
   console.log("El carrito ha sido actualizado.");
 });
 
-function emptyCart() {
-  // Vaciar el carrito en el almacenamiento local
-  localStorage.removeItem("cart");
-  // Actualizar el carrito en la interfaz de usuario
-  updateCart();
-  // Mostrar mensaje de confirmación
-  console.log("El carrito ha sido vaciado.");
- }
+
  
- function updateCart() {
-   // Obtener el contenedor del carrito y el elemento del total
-   const cartItemsContainer = document.getElementById("cartItems");
-   const totalElement = document.getElementById("total");
- 
-   // Vaciar el contenedor del carrito y el elemento del total
-   cartItemsContainer.innerHTML = "";
-   totalElement.textContent = "";
- 
-   // Obtener los productos del carrito del almacenamiento local
-   const cart = JSON.parse(localStorage.getItem("cart")) || [];
- 
-   let total = 0;
- 
- }
+
  
 
 

@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const id = urlParams.get('id');
+
+
 
 fetch('https://zmszgmmzcdolvhbxrskm.supabase.co/rest/v1/untref?select=id', {
 	headers: {
@@ -21,6 +21,7 @@ fetch('https://zmszgmmzcdolvhbxrskm.supabase.co/rest/v1/untref?select=id', {
 				data[0].description;
 			document.getElementById("priceValue").textContent = data[0].price;
 			document.getElementById("thumbnailValue").src = data[0].thumbnail;
+      document.getElementById("cantidadValue").textContent = data[0].cantidad;
 		}
 
 		const addToCartButton = document.getElementById("addToCartButton");
@@ -32,6 +33,7 @@ fetch('https://zmszgmmzcdolvhbxrskm.supabase.co/rest/v1/untref?select=id', {
 				description: data[0].description,
 				price: data[0].price,
 				thumbnail: data[0].thumbnail,
+        cantidad:data[0].cantidad
 			};
 
 			// Obtener el array del carrito del almacenamiento local
@@ -95,6 +97,42 @@ function emptyCart() {
      
        <img src="${product.thumbnail}" alt="${product.title}" width="100">
        <h3>${product.title}</h3>
+     
+       <div class="d-flex flex-row">
+        <div class="col-md-3">
+      <select class="form-select" aria-label="Default select example">
+  <option selected>Calzado talles</option>
+    <option value="39">37</option>
+  <option value="40">36</option>
+  <option value="41">37</option>
+  <option value="42">38</option>
+  <option value="39">39</option>
+  <option value="40">40</option>
+  <option value="41">41</option>
+  <option value="42">42</option>
+  <option value="43">43</option>
+  <option value="44">44</option>
+</select>
+
+</div>
+ <div class="col-md-3">
+      <select class="form-select" aria-label="Default select example">
+  <option selected>Remeras/camisetas/pantalones</option>
+
+  <option value="40">XS</option>
+  <option value="41">S</option>
+  <option value="42">M</option>
+  <option value="39">XL</option>
+  <option value="40">XXL</option>
+ 
+</select>
+
+</div>
+
+       
+       </div>
+       
+  <p>Cantidad: ${product.cantidad}</p>
        
        <p>Precio por unidad: $${product.price}</p>
   <button class="btn btn-danger type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal"" onclick="eliminarProducto('${product.title}')">Eliminar</button>
@@ -114,7 +152,11 @@ function emptyCart() {
        <h3>${product.title}</h3>
 	     <img src="${product.thumbnail}" alt="${product.title}" width="100">
        
-       <p>Precio: $${product.price}</p>
+       <h3>Precio: $${product.price}</h3>
+     
+           
+      
+ 
 	  
 
         <h4 class="text-danger">Producto Eliminado</h4>
