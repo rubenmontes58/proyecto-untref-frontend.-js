@@ -36,6 +36,9 @@ fetch('https://zmszgmmzcdolvhbxrskm.supabase.co/rest/v1/untref?select=id', {
         cantidad:data[0].cantidad
 			};
 
+
+
+      
 			// Obtener el array del carrito del almacenamiento local
 			let cart = localStorage.getItem("cart");
 			if (!cart) {
@@ -66,13 +69,16 @@ fetch('https://zmszgmmzcdolvhbxrskm.supabase.co/rest/v1/untref?select=id', {
 });
 
 function emptyCart() {
-  // Vaciar el carrito en el almacenamiento local
-  localStorage.removeItem("cart");
-  // Actualizar el carrito en la interfaz de usuario
+  // Vaciar completamente el almacenamiento local
+  localStorage.clear();
+  console.log("El carrito ha sido vaciado del localStorage.");
+
+  // Actualizar el carrito en la interfaz de usuario (código para actualizar el carrito aquí)
   updateCart();
+
   // Mostrar mensaje de confirmación
   console.log("El carrito ha sido vaciado.");
- }
+}
  
  function updateCart() {
    // Obtener el contenedor del carrito y el elemento del total
@@ -88,6 +94,7 @@ function emptyCart() {
  
    let total = 0;
    console.log(cart);
+   
  
    // Mostrar los productos del carrito en la interfaz de usuario y calcular el total
    cart.forEach(product => {
@@ -132,10 +139,19 @@ function emptyCart() {
        
        </div>
        
-  <p>Cantidad: ${product.cantidad}</p>
+  <p>Cantidad ${product.cantidad}</p>
+
+
+
+
+      
+   
+    
+          
+  
        
        <p>Precio por unidad: $${product.price}</p>
-  <button class="btn btn-danger type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal"" onclick="eliminarProducto('${product.title}')">Eliminar</button>
+  <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="eliminarProducto('${product.title}'); ">Eliminar</button>
   <!-- Button trigger modal -->
 
 
@@ -162,7 +178,7 @@ function emptyCart() {
         <h4 class="text-danger">Producto Eliminado</h4>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Aceptar</button>
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="location.reload();">Aceptar</button>
         
       </div>
     </div>
@@ -230,3 +246,4 @@ function eliminarProducto(title) {
 	  }, 3000); // 3000 milisegundos = 3 segundos
 	});
   }
+
